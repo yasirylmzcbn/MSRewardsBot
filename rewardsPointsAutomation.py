@@ -98,7 +98,7 @@ root.mainloop()
 driver=webdriver.Edge('msedgedriver.exe')
 driver.maximize_window()
 driver.get("https://bing.com")
-time.sleep(5)
+time.sleep(10)
 
 # log out if my personal account is logged in
 try:
@@ -117,7 +117,7 @@ driver.get("https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=13&ct=161021354
 email=driver.find_element_by_xpath("//input[@name='loginfmt']")
 email.send_keys(name.get())
 email.send_keys(Keys.RETURN)
-time.sleep(1)
+time.sleep(5)
 pw=driver.find_element_by_xpath("//input[@name='passwd']")
 pw.send_keys(passw.get())
 time.sleep(1)
@@ -127,8 +127,8 @@ try:
     signin=driver.find_element_by_xpath("//*[@id='idSIButton9']").click()
 except:
     time.sleep(1)
-    time.sleep(1)
 # do the 52 searches for 260 points
+time.sleep(3)
 sbb = driver.find_element_by_xpath("//input[@name='q']")
 sbb.send_keys("first search to click sign in")
 sbb.send_keys(Keys.RETURN)
@@ -143,7 +143,7 @@ try:
 except:
     print("no need to click sign in")
 
-# time.sleep(4)
+time.sleep(4)
 searchForX(string, 50, 1) # edge
 
 # open the tabs for the 3 daily tasks
@@ -206,8 +206,8 @@ try:
             print("no quiz")
 except:
     try:
-        firstTime = True
         for j in range(5):
+            firstTime = True
             if(firstTime == False):
                 driver.find_element_by_id("rqAnswerOption"+str(i)).click()
             for i in range(1, 8):
@@ -215,6 +215,7 @@ except:
                 driver.find_element_by_id("rqAnswerOption"+str(i)).click()
                 time.sleep(4)
                 firstTime = False
+                time.sleep(2)
     except:
         print("end of supersonic")
     print("quiz is over/not there")
