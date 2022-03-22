@@ -28,7 +28,6 @@ def searchForX(string, x, slp):
     for j in range(1, x+1):
         sb=driver.find_element_by_xpath("//input[@name='q']")
         sb.send_keys(string[j-1:j])
-        # sb.send_keys("Ayseye asigim")
         sb.send_keys(Keys.RETURN)
         time.sleep(slp)
 
@@ -47,9 +46,9 @@ root.config(bg='#1156a5')
 
 def submit(name, passw): 
     if(len(name.get()) == 0 ):
-        name.set('bonersalad69@outlook.com')
+        name.set('')
     if(len(passw.get()) == 0):
-        passw.set('areyoumal1')
+        passw.set('')
     print(name.get())
     print(passw.get())
     root.destroy()
@@ -112,8 +111,6 @@ except:
 
 # login
 driver.get("https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=13&ct=1610213540&rver=6.7.6631.0&wp=MBI_SSL&wreply=https%3a%2f%2fwww.bing.com%2fsecure%2fPassport.aspx%3frequrl%3dhttps%253a%252f%252fwww.bing.com%252f%253ftoWww%253d1%2526redig%253dE7D1934D54C441089EA720081A2C7EAB%2526wlsso%253d1%2526wlexpsignin%253d1%26sig%3d1EDFA8270D8760490948A79D0CEE61A2&lc=1033&id=264960&CSRFToken=25fb211b-ebd0-42e0-a0fc-cf081ffd526f&aadredir=1")
-# user_email = 'bonersalad69@outlook.com'
-# user_pw = 'areyoumal1'
 email=driver.find_element_by_xpath("//input[@name='loginfmt']")
 email.send_keys(name.get())
 email.send_keys(Keys.RETURN)
@@ -144,7 +141,8 @@ except:
     print("no need to click sign in")
 
 time.sleep(4)
-searchForX(string, 50, 1) # edge
+searchForX(string, 50, 1) # 
+# edge
 
 # open the tabs for the 3 daily tasks
 driver.get("https://account.microsoft.com/rewards/?refd=www.microsoft.com")
