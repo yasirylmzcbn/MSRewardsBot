@@ -260,6 +260,5 @@ for i in range(2):
         except:
             print('tab 3 done')
     
-    
     time.sleep(5)
     driver.quit()
