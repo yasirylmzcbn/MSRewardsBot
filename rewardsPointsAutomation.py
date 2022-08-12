@@ -47,9 +47,9 @@ root.config(bg='#1156a5')
  
 def submit(name, passw):
     if(len(name.get()) == 0 ):
-        name.set('your original microsoft email here')
+        name.set('main email')
     if(len(passw.get()) == 0):
-        passw.set('password')
+        passw.set('main password')
     print(name.get())
     print(passw.get())
     root.destroy()
@@ -85,14 +85,16 @@ root.mainloop()
 time.sleep(2)
 
 for i in range(2):
+    
     driver = webdriver.Edge()
     driver.get("https://bing.com")
     time.sleep(5)
     
+
      # you could do more than 2 in theory but you could possibly get ip banned
     if i != 0:
-        name.set("secondary email to get more points (optional)")
-        passw.set("password 2")
+        name.set("second account email")
+        passw.set("second account password")
     
     # log out if personal account is logged in
     try:
@@ -155,23 +157,20 @@ for i in range(2):
         driver.find_element(By.PARTIAL_LINK_TEXT,"SIGN IN").click()
     except:
         print("no need to click sign in")
-    tasks = driver.find_elements(By.PARTIAL_LINK_TEXT, "points")
+    tasks = driver.find_elements(By.PARTIAL_LINK_TEXT, "points >")
     numTabs = 0
     for task in tasks:
         task.click()
-        time.sleep(2)
-        numTabs+=1
-        if(numTabs==3):
-            break
+        driver.implicitly_wait(10)
     
     time.sleep(2)
     
     # task 1 is always completed by simply clicking on the link so no extra code is necessary
-    driver.switch_to.window(driver.window_handles[3])
-    time.sleep(10)
+    driver.switch_to.window(driver.window_handles[len(tasks)])
+    time.sleep(5)
 
     # task 2
-    driver.switch_to.window(driver.window_handles[2])
+    driver.switch_to.window(driver.window_handles[len(tasks)-1])
     theTask = driver.find_element(By.ID, 'sb_form_q').get_attribute("value")
     if "quiz" in theTask:
         try:
@@ -215,8 +214,8 @@ for i in range(2):
     except:
         try:
             for k in range(3):
-                for j in range(5):
-                    firstTime = True
+                firstTime = True
+                for j in range(8):
                     # if(firstTime == False):
                     #     driver.find_element(By.ID, "rqAnswerOption"+str(i)).click()
                     if(firstTime == True):
@@ -228,7 +227,8 @@ for i in range(2):
                         time.sleep(4)
                         firstTime = False
                         time.sleep(2)
-        except:
+        except Exception as e:
+            print(e)
             print("end of supersonic")
         print("quiz is over/not there")
     try:
@@ -239,7 +239,7 @@ for i in range(2):
         print('no this or that quiz found')
         
     # task 3
-    driver.switch_to.window(driver.window_handles[1])
+    driver.switch_to.window(driver.window_handles[len(tasks)-2])
     # theTask = driver.find_element(By.ID, 'sb_form_q').get_attribute("value")
     time.sleep(3)
     
