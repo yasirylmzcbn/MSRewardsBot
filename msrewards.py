@@ -4,10 +4,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from time import sleep
+import random
 import os
 from dotenv import load_dotenv
 
-load_dotenv('selenium_folder\\credentials.env')
+load_dotenv('credentials.env')
 email = os.getenv('USER')
 password = os.getenv('PASS')
 
@@ -26,6 +27,25 @@ submit_button.click()
 forget_signin_button = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//input[@id='idBtn_Back']")))
 forget_signin_button.click()
 
+# search method
+def searchForX(x, slp):
+    string = ""
+    for i in range(50):
+        i = random.randrange(97, 122)
+        string+=str(chr(i))
+    sb = driver.find_element(By.ID, "sb_form_q")
+    sb.clear()
+    for j in range(1, x+1):
+        try:
+            sb=driver.find_element(By.XPATH, "//textarea[@name='q']")
+        except:
+            sb=driver.find_element(By.XPATH, "//input[@name='q']")
+        sb.send_keys(string[j-1:j])
+        sb.send_keys(Keys.RETURN)
+        sleep(slp)
+
+driver.get('https://bing.com')
+searchForX(50, 1)
 
 def various_quests(driver):
     # this or that
@@ -39,7 +59,6 @@ def various_quests(driver):
     # bing news quiz (10 questions)
     if 'Bing news quiz' in driver.page_source:
         for option in range(10):
-            print(option)
             answer = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, f'questionOptionChoice{option}0')))
             answer.click()
             try:
@@ -50,8 +69,22 @@ def various_quests(driver):
                 print('exception')
                 nextq = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, f"//input[@name='submit']")))
                 nextq.click()
-
-
+                
+    # bing homepage quiz (3 questions)
+    if 'Bing homepage quiz' in driver.page_source:
+        for option in range(3):
+            answer = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, f'questionOptionChoice{option}0')))
+            answer.click()
+            try:
+                sleep(0.5)
+                nextq = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, f'nextQuestionbtn{option}')))
+                nextq.click()
+            except:
+                print('exception')
+                nextq = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, f"//input[@name='submit']")))
+                nextq.click()
+    
+driver.get('https://rewards.microsoft.com/')
 # learn how to use driver.find_elements() to get all the links that contain the word 'points >'
 # get the elements using PARTIAL_LINK_TEXT, like in the example below
 points_links = driver.find_elements(By.PARTIAL_LINK_TEXT, 'points >') 
