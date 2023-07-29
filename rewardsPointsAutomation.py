@@ -1,90 +1,72 @@
-import time
-import os
-import platform
-import random
-from traceback import print_tb
-from selenium import webdriver
-from selenium.webdriver import Edge
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.edge.options import Options
-import tkinter as tk
-from tkinter import *
-from tkinter import simpledialog, messagebox
-from PIL import ImageTk, Image
-from functools import partial
-
-cwd = os.getcwd()  # Get the current working directory (cwd)
-files = os.listdir(cwd)  # Get all the files in that directory
-print("Files in %r: %s" % (cwd, files))
-
-# search method
-def searchForX(string, x, slp):
-    sb = driver.find_element_by_id("sb_form_q")
-    sb.clear()
-    for j in range(1, x+1):
-        sb=driver.find_element_by_xpath("//input[@name='q']")
-        sb.send_keys(string[j-1:j])
-        sb.send_keys(Keys.RETURN)
-        time.sleep(slp)
-
-def defEmail():
-    name.set('csistestingacc6@outlook.com')
-    passw.set('compsci123')
-    root.destroy()
-
-root = tk.Tk()  
-root.title('Microsoft Rewards Bot')
-icon = PhotoImage(file = 'mslogo.png')
-root.iconphoto(True, icon)
-root.geometry("370x180")
-root.config(bg='#1156a5')
+# import time
+# import os
+# import platform
+# import random
+# from traceback import print_tb
+# from selenium import webdriver
+# from selenium.webdriver import Edge
+# from selenium.common.exceptions import TimeoutException
+# from selenium.webdriver.common.keys import Keys
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.support import expected_conditions as EC
+# from selenium.webdriver.edge.options import Options
+# from selenium.webdriver.edge.service import Service
+# import tkinter as tk
+# from tkinter import *
+# from PIL import ImageTk, Image
+# from functools import partial
+# from urllib3 import ProxyManager
 
 
-def submit(name, passw): 
-    if(len(name.get()) == 0 ):
-        name.set('')
-    if(len(passw.get()) == 0):
-        passw.set('')
-    print(name.get())
-    print(passw.get())
-    root.destroy()
+# root = tk.Tk()  
+# root.title('Microsoft Rewards Bot')
+# # icon = PhotoImage(file = 'mslogo.png')
+# # root.iconphoto(True, icon)
+# root.geometry("370x180")
+# root.config(bg='#1156a5')
+
+
+# def submit(name, passw): 
+#     print(name.get(), passw.get())
+#     if(len(name.get()) == 0 ):
+#         name.set('username')
+#     if(len(passw.get()) == 0):
+#         passw.set('')
+#     print(name.get())
+#     print(passw.get())
+#     root.destroy()
+    
      
-name_label = tk.Label(root, text = 'Email', font=('calibre',10, 'bold'))
-name = StringVar()
-name_entry = tk.Entry(root,textvariable = name, font=('calibre',10,'normal'), width=30)
 
-passw_label = tk.Label(root, text = 'Password', font = ('calibre',10,'bold'))
-passw = StringVar()
-passw_entry = tk.Entry(root, textvariable = passw, font = ('calibre',10,'normal'), show = '*', width=30)
+# name_label = tk.Label(root, text = 'Email', font=('calibre',10, 'bold'))
+# name = StringVar()
+# name_entry = tk.Entry(root, textvariable = name, font=('calibre',10,'normal'), width=30)
 
-default = tk.Button(root, text = "Click this if you want to use the test account instead", command = defEmail)
+# passw_label = tk.Label(root, text = 'Password', font = ('calibre',10,'bold'))
+# passw = StringVar()
+# passw_entry = tk.Entry(root, textvariable = passw, font = ('calibre',10,'normal'), show = '*', width=30)
 
-submit = partial(submit, name, passw)
+# default = tk.Button(root, text = "Click this if you want to use the test account instead", command = defEmail)
 
-sub_btn = tk.Button(root, text = 'Start Bot', command = submit)
-root.bind('<Return>', lambda event=None: sub_btn.invoke())
+# submit = partial(submit, name, passw)
 
-name_label.config(bg='#1156a5')
-passw_label.config(bg='#1156a5')
-sub_btn.config(bg='black', fg='white')
-default.config(bg='black', fg='white')
+# sub_btn = tk.Button(root, text = 'Start Bot', command = submit)
+# root.bind('<Return>', lambda event=None: sub_btn.invoke())
 
-name_label.grid(row=0,column=0)
-name_entry.grid(row=0,column=1)
-passw_label.grid(row=1,column=0)
-passw_entry.grid(row=1,column=1)
-sub_btn.grid(row=2,column=1)
-default.grid(row=4,column=1)
+# name_label.config(bg='#1156a5')
+# passw_label.config(bg='#1156a5')
+# sub_btn.config(bg='black', fg='white')
+# default.config(bg='black', fg='white')
 
-root.mainloop()
-# time.sleep(2)
+# name_label.grid(row=0,column=0)
+# name_entry.grid(row=0,column=1)
+# passw_label.grid(row=1,column=0)
+# passw_entry.grid(row=1,column=1)
+# sub_btn.grid(row=2,column=1)
+# default.grid(row=4,column=1)
 
-# csistestingacc@outlook.com
-# compsci123
+# root.mainloop()
 
 # askq = input ("If you would like to use your own email, press enter. If you would like to use the default email account, type 'default'.\n")
 # if(askq == 'default'):
@@ -94,157 +76,154 @@ root.mainloop()
 #     user_email = input("Enter email: ")
 #     user_pw = input("Enter password: ")
 
-driver=webdriver.Edge('msedgedriver.exe')
-driver.maximize_window()
-driver.get("https://bing.com")
-time.sleep(10)
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+from time import sleep
+import random
+import os
+from dotenv import load_dotenv
 
-# log out if my personal account is logged in
-try:
-    signout = driver.find_element_by_link_text("Yasir").click()
-    time.sleep(2)
-    signout = driver.find_element_by_xpath("//span[text()=\"Sign out\"]").click()
-    time.sleep(3)
-except:
-    print('no need to log out')
-    driver.find_element_by_id("id_a").click()
+load_dotenv('selenium_folder\\credentials.env')
+email = os.getenv('USER')
+password = os.getenv('PASS')
 
-# login
-driver.get("https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=13&ct=1610213540&rver=6.7.6631.0&wp=MBI_SSL&wreply=https%3a%2f%2fwww.bing.com%2fsecure%2fPassport.aspx%3frequrl%3dhttps%253a%252f%252fwww.bing.com%252f%253ftoWww%253d1%2526redig%253dE7D1934D54C441089EA720081A2C7EAB%2526wlsso%253d1%2526wlexpsignin%253d1%26sig%3d1EDFA8270D8760490948A79D0CEE61A2&lc=1033&id=264960&CSRFToken=25fb211b-ebd0-42e0-a0fc-cf081ffd526f&aadredir=1")
-email=driver.find_element_by_xpath("//input[@name='loginfmt']")
-email.send_keys(name.get())
-email.send_keys(Keys.RETURN)
-time.sleep(5)
-pw=driver.find_element_by_xpath("//input[@name='passwd']")
-pw.send_keys(passw.get())
-time.sleep(1)
-signin=driver.find_element_by_xpath("//*[@id='idSIButton9']").click()
-time.sleep(2)
-try:
-    signin=driver.find_element_by_xpath("//*[@id='idSIButton9']").click()
-except:
-    time.sleep(1)
-# do the 52 searches for 260 points
-time.sleep(3)
-sbb = driver.find_element_by_xpath("//input[@name='q']")
-sbb.send_keys("first search to click sign in")
-sbb.send_keys(Keys.RETURN)
-time.sleep(4)
-string = ''
-for i in range(50):
-    i = random.randrange(97, 122)
-    string+=str(chr(i))
-try:
-    signin=driver.find_element_by_xpath("//input[@id='id_a']").click()
-    time.sleep(6)
-except:
-    print("no need to click sign in")
+driver = webdriver.Edge()
+driver.get('https://rewards.bing.com/?refd=www.microsoft.com&redref=amc')
 
-time.sleep(4)
-searchForX(string, 50, 1) # 
-# edge
+email_entry = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//input[@type='email']")))
+email_entry.send_keys(email, Keys.RETURN)
 
-# open the tabs for the 3 daily tasks
-driver.get("https://account.microsoft.com/rewards/?refd=www.microsoft.com")
-time.sleep(1)
-try:
-    driver.find_element_by_partial_link_text("SIGN IN").click()
-except:
-    print("no need to click sign in")
-tasks = driver.find_elements_by_partial_link_text("points")
-numTabs = 0
-for task in tasks:
-    task.click()
-    time.sleep(2)
-    numTabs+=1
-    if(numTabs==3):
-        break
+password_entry = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//input[@type='password']")))
+password_entry.send_keys(password)
 
-# task 1 is always completed by simply clicking on the link so no extra code is necessary
+submit_button = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//input[@type='submit']")))
+submit_button.click()
 
-# task 2
-driver.switch_to.window(driver.window_handles[2])
-theTask = driver.find_element_by_id('sb_form_q').get_attribute("value")
-if "quiz" in theTask:
+forget_signin_button = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//input[@id='idBtn_Back']")))
+forget_signin_button.click()
+
+# search method
+def searchForX(x):
+    string = ""
+    for i in range(x):
+        i = random.randrange(97, 122)
+        string+=str(chr(i))
+    sb = WebDriverWait(driver,20).until(EC.presence_of_element_located((By.ID, "sb_form_q")))
+    sb.clear()
     try:
-        for questionNumber in range(0,10):
-            # it doesn't matter if the answer is wrong, amount of points awarded is always the same
-            driver.find_element_by_id("ChoiceText_"+str(questionNumber)+"_1").click()
-            time.sleep(3)
-            if(questionNumber != 9):
-                driver.find_element_by_xpath("//input[@value='Next question']").click()
-                time.sleep(1)
-            else:
-                driver.find_element_by_xpath("//input[@value='Get your score']").click()
-    except:
-        print("this quiz has already been completed")
-time.sleep(2)
-try:
-    driver.find_element_by_id("rqStartQuiz").click()
-    time.sleep(1)
-    driver.find_element_by_id("rqAnswerOption0").click()
-    time.sleep(3)
-    if driver.find_element_by_id("rqAnswerOption0").get_attribute("tabindex") == "-1":
+        signin_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[contains(text(), 'Sign in')]")))
+        signin_button.click()
+    except Exception as e:
+        # print(e)
+        print('no need to click sign in')
+    for j in range(1, x+1):
         try:
-            for quizQuestion in range(0,5):
-                try:
-                    driver.find_element_by_id("rqAnswerOption0").click()
-                except:
-                    print("broken")
-                    break
-                for quizQuestionAnswer in range(1,10):
-                    time.sleep(4)
-                    try:
-                        driver.find_element_by_id("rqAnswerOption"+str(quizQuestionAnswer)).click()
-                    except:
-                        break
-                print("next question")     
-                time.sleep(2)           
-        except: 
-            print("no quiz")
-except:
-    try:
-        for j in range(5):
-            firstTime = True
-            if(firstTime == False):
-                driver.find_element_by_id("rqAnswerOption"+str(i)).click()
-            for i in range(1, 8):
-                print("rqAnswerOption"+str(i))
-                driver.find_element_by_id("rqAnswerOption"+str(i)).click()
-                time.sleep(4)
-                firstTime = False
-                time.sleep(2)
-    except:
-        print("end of supersonic")
-    print("quiz is over/not there")
-try:
-    for i in range(10):
-        driver.find_element_by_id("rqAnswerOption0").click()
-        time.sleep(6)
-except:
-    print('no this or that quiz found')
-# task 3
-driver.switch_to.window(driver.window_handles[1])
-# theTask = driver.find_element_by_id('sb_form_q').get_attribute("value")
-time.sleep(3)
+            sb=WebDriverWait(driver,20).until(EC.presence_of_element_located((By.XPATH, "//textarea[@name='q']")))
+        except:
+            sb=WebDriverWait(driver,20).until(EC.presence_of_element_located((By.XPATH, "//input[@name='q']")))
+        sb.send_keys(string[j-1:j])
+        sb.send_keys(Keys.RETURN)
 
-try:
-    driver.find_element_by_id("rqStartQuiz").click()
-    print("invalid poll option/there is no poll")
-    try:
-        time.sleep(1.5)
-        driver.find_element_by_id("rqAnswerOption1").click()
-        time.sleep(1.5)
-        if driver.find_element_by_id("rqAnswerOption1").get_attribute("tabindex") == "-1":
-            driver.find_element_by_id("rqAnswerOption0").click()
-    except:
-        print('no guessing game')
-except:
-    try:
-        driver.find_element_by_id("btoption0").click()
-    except:
-        print('tab 3 done')
+driver.get('https://bing.com')
+searchForX(35)
 
 
-time.sleep(5)
-driver.quit()
+def various_quests(driver):
+    # this or that
+    if 'This or That?' in driver.page_source:
+        startPlaying = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'rqStartQuiz')))
+        startPlaying.click()
+        for option in range(10):
+            answer = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'rqAnswerOption0')))
+            answer.click()
+    
+    # bing news quiz (10 questions)
+    if 'Bing news quiz' in driver.page_source:
+        for option in range(10):
+            answer = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, f'questionOptionChoice{option}0')))
+            answer.click()
+            try:
+                sleep(0.5)
+                nextq = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, f'nextQuestionbtn{option}')))
+                nextq.click()
+            except:
+                print('exception')
+                nextq = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, f"//input[@name='submit']")))
+                nextq.click()
+                
+    # bing homepage quiz (3 questions)
+    if 'Bing homepage quiz' in driver.page_source:
+        for option in range(3):
+            answer = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, f'questionOptionChoice{option}0')))
+            answer.click()
+            try:
+                sleep(0.5)
+                nextq = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, f'nextQuestionbtn{option}')))
+                nextq.click()
+            except:
+                print('exception')
+                nextq = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, f"//input[@name='submit']")))
+                nextq.click()
+                
+    # warpspeed or supersonic quiz
+    if 'Welcome to your Microsoft Rewards quiz' in driver.page_source:
+        startPlaying = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'rqStartQuiz')))
+        startPlaying.click()
+        
+        firstOption = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'rqAnswerOption0')))
+        
+        try:
+            for question in range(5):
+                if firstOption == WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'rqAnswerOption0'))):
+                    for option in range(8):
+                        try:
+                            answer = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, f'rqAnswerOption{option}')))
+                            answer.click()
+                        except:
+                            continue
+                else:
+                    firstOption = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'rqAnswerOption0')))
+        except:
+            print('quiz over')    
+    
+driver.get('https://rewards.microsoft.com/')
+# learn how to use driver.find_elements() to get all the links that contain the word 'points >'
+# get the elements using PARTIAL_LINK_TEXT, like in the example below
+points_links = driver.find_elements(By.PARTIAL_LINK_TEXT, 'points >') 
+
+index = 0
+for i in points_links:
+    driver.switch_to.window(driver.window_handles[0])
+    i.click()
+    driver.switch_to.window(driver.window_handles[index+1])
+    
+    try:
+        signin_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[contains(text(), 'Sign in')]")))
+        signin_button.click()
+    except Exception as e:
+        # print(e)
+        print('no need to click sign in')
+    
+    if index == 0:
+        print('waiting')
+        sleep(5)
+        
+    elif index == 2:
+        pollOption = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, "btoption0")))
+        pollOption.click() 
+        driver.implicitly_wait(5)
+    
+    else:
+        driver.implicitly_wait(5)
+        various_quests(driver)
+        driver.implicitly_wait(5)
+    
+    index += 1
+    
+print('loop over')
+    
+
+input()
