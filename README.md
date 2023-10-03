@@ -1,5 +1,12 @@
 # Microsoft Rewards Points Automation Bot
 
-## This bot takes the user's credentials and earns every daily point possible. These points can be collected to buy gift cards from restaurants and stores, enter giveaways, or donate to charities.
+## This bot uses the user's credentials and earns every daily point possible on the Microsoft Rewards website. These points can be used to buy gift cards from restaurants and stores, enter giveaways, or donate to charities.
 
-#### For the bot to be able to work, the user needs to have the latest version of msedgedriver.exe needs to be in their system PATH. A fast network connection is required for the bot to be able to work properly.
+### Instructions:
+Clone the repo:<br>
+```git clone https://github.com/yasirylmzcbn/MSRewardsBot.git```<br><br>
+Enter the directory of the repo:<br>
+```cd MSRewardsBot```<br><br>
+Download the required libraries:<br>
+```pip install -r requirements.txt```<br><br>
+Add your Microsoft account credentials in the credentials.env file. This allows you to store your credentials locally.
