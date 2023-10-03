@@ -8,7 +8,7 @@ import random
 import os
 from dotenv import load_dotenv
 
-load_dotenv('selenium_folder\\credentials.env')
+load_dotenv('credentials.env')
 email = os.getenv('USER')
 password = os.getenv('PASS')
 
@@ -28,7 +28,7 @@ forget_signin_button = WebDriverWait(driver, 20).until(EC.element_to_be_clickabl
 forget_signin_button.click()
 
 # search method
-def searchForX(x):
+def searchForX(x=35):
     string = ""
     for i in range(x):
         i = random.randrange(97, 122)
@@ -50,7 +50,7 @@ def searchForX(x):
         sb.send_keys(Keys.RETURN)
 
 driver.get('https://bing.com')
-searchForX(35)
+searchForX()
 
 
 def various_quests(driver):
