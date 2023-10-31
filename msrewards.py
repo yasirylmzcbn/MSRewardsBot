@@ -1,4 +1,6 @@
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from selenium import webdriver
+from selenium.webdriver.edge.service import Service
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -12,7 +14,7 @@ load_dotenv('credentials.env')
 email = os.getenv('USER')
 password = os.getenv('PASS')
 
-driver = webdriver.Edge()
+driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()))
 driver.get('https://rewards.bing.com/?refd=www.microsoft.com&redref=amc')
 
 email_entry = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//input[@type='email']")))
