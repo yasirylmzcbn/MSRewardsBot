@@ -14,6 +14,7 @@ load_dotenv('credentials.env')
 email = os.getenv('USER')
 password = os.getenv('PASS')
 
+# automated webdriver updates
 driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()))
 driver.get('https://rewards.bing.com/?refd=www.microsoft.com&redref=amc')
 
